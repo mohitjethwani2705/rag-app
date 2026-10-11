@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: rag-app
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements-prod.txt
+    startCommand: uvicorn rag.api.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /healthz
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: LLM_PROVIDER
+        value: groq
+      - key: GROQ_API_KEY
+        sync: false
+      - key: JINA_API_KEY
+        sync: false
+      - key: APP_PASSWORD
+        sync: false
+      - key: JINA_TOKEN_BUDGET
+        value: "800000"
