@@ -18,11 +18,9 @@ class Settings(BaseSettings):
     max_new_tokens: int = 1024
     temperature: float = 0.2
 
-    # Intent gate (free): rules + a small Groq model decide small talk vs. real question.
-    intent_model: str = ""  # empty = use GROQ_MODEL; set to a smaller Groq model to save quota
-    intent_max_words: int = 8
+    # Intent gate: every message is classified by the OpenRouter decision API (small talk vs. real question).
     intent_threshold: float = 0.7
-    # Preferred decider: free structured-decision model on OpenRouter (falls back to Groq if no key / on error).
+    # Free structured-decision model on OpenRouter. Required: without a key, every message is treated as a question.
     openrouter_api_key: str = ""
     openrouter_intent_model: str = "inception/mercury-decide:free"
     openrouter_systemone_url: str = "https://openrouter.ai/api/v1/systemone"

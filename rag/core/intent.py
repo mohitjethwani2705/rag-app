@@ -1,14 +1,10 @@
-"""Intent gate: decide whether a message is a real question or small talk. Free, no extra service.
+"""Intent gate: decide whether a message is a real question or small talk.
 
-1. Rules: obvious thanks/greetings/goodbyes are caught instantly with a regex (no API call).
-2. Short, unclear messages go to inception/mercury-decide:free on OpenRouter (free structured-decision model,
-   same /v1/systemone schema as Jev). If OPENROUTER_API_KEY is unset or the call fails, a small Groq model decides.
-3. Long messages, or any failure, count as a real question so normal retrieval is never blocked.
+Every message is classified by inception/mercury-decide:free on OpenRouter (System One schema).
+No rules, no length shortcuts, no other model. If the call fails (or OPENROUTER_API_KEY is unset)
+the message is treated as a real question so normal retrieval is never blocked.
 """
-import json
 import logging
-import re
-from functools import lru_cache
 
 import httpx
 
@@ -17,40 +13,6 @@ from .config import settings
 log = logging.getLogger(__name__)
 
 QUESTION, SMALL_TALK = "question", "small_talk"
-
-_PHRASE = re.compile(
-    r"^(hi+|hello+|hey+|yo|good (morning|afternoon|evening|night)|thanks?( you)?( (so|very) much| a lot)?|thank u|thx|ty|"
-    r"ok(ay)?|cool|great|nice|awesome|perfect|good|got it|understood|bye|goodbye|see you|lol|"
-    r"(it |that |this )?(works?|worked) (well|great|fine|perfectly)( for me)?|(that|it) (helps|helped)|well done|good job|"
-    r"nice one|all good|sounds good)$",
-    re.I,
-)
-
-
-def _is_small_talk_rule(q: str) -> bool:
-    parts = [p.strip() for p in re.split(r"[,.!;:]+|and", q) if p.strip()]
-    return bool(parts) and all(_PHRASE.match(p) for p in parts)
-
-
-_PROMPT = (
-    "Classify the user's message. Reply with JSON only: {\"intent\": \"small_talk\"} or {\"intent\": \"question\"}.\n"
-    "small_talk = greeting, thanks, praise/feedback on the previous reply, goodbye, chit-chat with nothing to look up.\n"
-    "question = asks for information or help, including vague ones like 'what is this document about'.\n"
-    "When unsure, answer question.\n\n"
-    "Previous assistant reply: {last}\nUser message: {msg}"
-)
-
-
-@lru_cache
-def _classifier():
-    if settings.provider != "groq":
-        from .models import get_llm
-
-        return get_llm()
-    from langchain_groq import ChatGroq
-
-    return ChatGroq(model=settings.intent_model or settings.groq_model, api_key=settings.groq_api_key,
-                    temperature=0, max_tokens=400)
 
 
 def _mercury(q: str, last: str) -> str:
@@ -82,24 +44,12 @@ def _mercury(q: str, last: str) -> str:
 
 
 def classify_intent(question: str, chat_history: list[dict] | None = None) -> str:
-    q = question.strip()
-    if _is_small_talk_rule(q):
-        return SMALL_TALK
-    if len(q.split()) > settings.intent_max_words or "?" in q:
-        return QUESTION  # clearly a real question; skip the API call
-    last = next((m["content"] for m in reversed(chat_history or []) if m["role"] != "user"), "")
-    if settings.openrouter_api_key:
-        try:
-            return _mercury(q, last)
-        except Exception as e:
-            log.warning("mercury-decide failed, falling back to Groq: %s", e)
-    if not settings.llm_configured:
+    if not settings.openrouter_api_key:
+        log.warning("OPENROUTER_API_KEY not set; treating message as a question")
         return QUESTION
+    last = next((m["content"] for m in reversed(chat_history or []) if m["role"] != "user"), "")
     try:
-        out = _classifier().invoke(_PROMPT.replace("{last}", last[:400]).replace("{msg}", q)).content
-        m = re.search(r"\{.*?\}", out, re.S)
-        if m and json.loads(m.group()).get("intent") == SMALL_TALK:
-            return SMALL_TALK
+        return _mercury(question.strip(), last)
     except Exception as e:
-        log.warning("intent gate failed, treating as question: %s", e)
-    return QUESTION
+        log.warning("mercury-decide failed, treating as question: %s", e)
+        return QUESTION
