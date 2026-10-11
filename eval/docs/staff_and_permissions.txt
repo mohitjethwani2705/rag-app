@@ -1,0 +1,23 @@
+TableFlow Staff and Permissions
+
+ROLES
+Owner has full access including billing and can delete the account.
+Manager has access to everything except billing and deleting the account.
+Host can manage reservations and the waitlist and can view guest profiles, but cannot see reports.
+Server can only view reservations for their own section.
+Custom roles are available on the Pro plan only.
+
+INVITING STAFF
+Invite staff from Settings > Team > Invite. Invitation links expire after 72 hours.
+The number of staff accounts you can have depends on your plan.
+Deactivating a staff member revokes their access immediately. Their history is kept.
+
+SECURITY
+Two-factor authentication works with authenticator apps. SMS codes are not supported.
+Two-factor authentication is mandatory for Owners and Managers on the Pro plan and optional on other plans.
+Password reset links are valid for 30 minutes.
+After 5 failed login attempts an account is locked for 15 minutes.
+Web sessions time out after 8 hours of inactivity.
+
+AUDIT LOG
+The audit log shows who changed reservations and settings. It is available on the Pro plan only and entries are kept for 12 months.

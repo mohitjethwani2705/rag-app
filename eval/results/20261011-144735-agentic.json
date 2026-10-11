@@ -1,0 +1,472 @@
+{
+  "args": {
+    "full": true,
+    "rewrite": true,
+    "grade": true,
+    "chunk_size": 150,
+    "overlap": 25,
+    "judge_model": "openai/gpt-oss-120b",
+    "limit": 0,
+    "tag": "agentic"
+  },
+  "retrieval": {
+    "dense only": {
+      "hit": 1.0,
+      "mrr": 0.9019607843137255
+    },
+    "BM25 only": {
+      "hit": 0.9705882352941176,
+      "mrr": 0.9411764705882353
+    },
+    "hybrid (RRF)": {
+      "hit": 0.9705882352941176,
+      "mrr": 0.9411764705882353
+    },
+    "hybrid + rerank": {
+      "hit": 1.0,
+      "mrr": 0.9803921568627451
+    }
+  },
+  "rows": [
+    {
+      "id": "q01",
+      "question": "How much does the Growth plan cost?",
+      "answerable": true,
+      "ok": true,
+      "answer": "The Growth plan costs **$129 per location per month**\u30101\u3011.",
+      "top_score": 2.597419023513794,
+      "sufficient": true,
+      "cited": false,
+      "latency": 12.576449394226074
+    },
+    {
+      "id": "q02",
+      "question": "do i need a credit card for the free trial",
+      "answerable": true,
+      "ok": true,
+      "answer": "No, you don\u2019t need a credit card to start the free trial.  \n[1]",
+      "top_score": 5.721924304962158,
+      "sufficient": true,
+      "cited": true,
+      "latency": 10.74101972579956
+    },
+    {
+      "id": "q03",
+      "question": "What happens if my payment fails?",
+      "answerable": true,
+      "ok": true,
+      "answer": "If a payment fails, the system will retry it three times over a 7\u2011day period\u2014specifically on day\u202f1, day\u202f3, and day\u202f7. If all three attempts fail, the account is suspended. Once a successful payment is made, the account is reactivated immediately. [1]",
+      "top_score": 5.506763458251953,
+      "sufficient": true,
+      "cited": true,
+      "latency": 11.235412359237671
+    },
+    {
+      "id": "q04",
+      "question": "I want to cancel my monthly subscription after two weeks, can I get my money back?",
+      "answerable": true,
+      "ok": true,
+      "answer": "No. Monthly subscriptions are not refundable unless the refund is requested within the first\u202f7\u202fdays of your first paid month. Since you\u2019re canceling after two weeks, the refund policy does not apply. [1]",
+      "top_score": -1.494382381439209,
+      "sufficient": true,
+      "cited": true,
+      "latency": 10.210872888565063
+    },
+    {
+      "id": "q05",
+      "question": "How much do extra text messages cost?",
+      "answerable": true,
+      "ok": true,
+      "answer": "Extra text messages cost $0.04 per SMS. [1]",
+      "top_score": -1.515950083732605,
+      "sufficient": true,
+      "cited": true,
+      "latency": 9.6479971408844
+    },
+    {
+      "id": "q06",
+      "question": "Is there a discount for paying yearly?",
+      "answerable": true,
+      "ok": true,
+      "answer": "Yes. Paying yearly instead of monthly saves 20\u202fpercent. [1]",
+      "top_score": -4.029548645019531,
+      "sufficient": true,
+      "cited": true,
+      "latency": 10.12183690071106
+    },
+    {
+      "id": "q07",
+      "question": "When does a downgrade take effect?",
+      "answerable": true,
+      "ok": true,
+      "answer": "A downgrade takes effect at the next billing date. [1]",
+      "top_score": 4.914198398590088,
+      "sufficient": true,
+      "cited": true,
+      "latency": 16.75555729866028
+    },
+    {
+      "id": "q08",
+      "question": "How many staff accounts come with Starter?",
+      "answerable": true,
+      "ok": true,
+      "answer": "Starter includes up to 5 staff accounts. [1]",
+      "top_score": 2.257197856903076,
+      "sufficient": true,
+      "cited": true,
+      "latency": 20.76529335975647
+    },
+    {
+      "id": "q09",
+      "question": "What happens to my data if the trial ends and I don't pick a plan?",
+      "answerable": true,
+      "ok": true,
+      "answer": "If you don\u2019t select a plan when the 14\u2011day free trial ends, your account is switched to read\u2011only mode and your data is retained for 60 days before it is deleted. [1]",
+      "top_score": 5.761022090911865,
+      "sufficient": true,
+      "cited": true,
+      "latency": 21.62077760696411
+    },
+    {
+      "id": "q10",
+      "question": "Do guests get their deposit back if they cancel the day before?",
+      "answerable": true,
+      "ok": true,
+      "answer": "Yes. If a guest cancels at least 24\u202fhours before the reservation, the deposit is refunded automatically within 5 to 7 business days\u30101\u3011.",
+      "top_score": 3.1633501052856445,
+      "sufficient": true,
+      "cited": false,
+      "latency": 29.164599895477295
+    },
+    {
+      "id": "q11",
+      "question": "What's the maximum no-show fee?",
+      "answerable": true,
+      "ok": true,
+      "answer": "The maximum no\u2011show fee a restaurant can charge is **$25 per guest**\u30101\u3011.",
+      "top_score": 0.709716796875,
+      "sufficient": true,
+      "cited": false,
+      "latency": 58.83860945701599
+    },
+    {
+      "id": "q12",
+      "question": "How long does a waitlisted guest have to reply to the text?",
+      "answerable": true,
+      "ok": true,
+      "answer": "Guests have 10 minutes to respond to the text by default before they are removed from the waitlist. [1]",
+      "top_score": 5.0220465660095215,
+      "sufficient": true,
+      "cited": true,
+      "latency": 46.9626739025116
+    },
+    {
+      "id": "q13",
+      "question": "how many tables can we join together for a big group",
+      "answerable": true,
+      "ok": true,
+      "answer": "You can combine up to **4 tables** to seat a larger party. [1]",
+      "top_score": -0.706754207611084,
+      "sufficient": true,
+      "cited": true,
+      "latency": 45.23757576942444
+    },
+    {
+      "id": "q14",
+      "question": "How far ahead can people book?",
+      "answerable": true,
+      "ok": true,
+      "answer": "People can book up to 60 days in advance by default, and this limit can be increased to a maximum of 365 days. [1]",
+      "top_score": 2.1997766494750977,
+      "sufficient": true,
+      "cited": true,
+      "latency": 42.67550706863403
+    },
+    {
+      "id": "q15",
+      "question": "Do big parties need approval?",
+      "answerable": true,
+      "ok": true,
+      "answer": "Yes. Parties of more than 10 guests require manual approval by default. [1]",
+      "top_score": -0.7694910764694214,
+      "sufficient": true,
+      "cited": true,
+      "latency": 43.54142904281616
+    },
+    {
+      "id": "q16",
+      "question": "What is the default deposit amount?",
+      "answerable": true,
+      "ok": true,
+      "answer": "The default deposit amount is $10 per guest. [1]",
+      "top_score": 0.705758810043335,
+      "sufficient": true,
+      "cited": true,
+      "latency": 43.16515851020813
+    },
+    {
+      "id": "q17",
+      "question": "What range can I set the cancellation window to?",
+      "answerable": true,
+      "ok": true,
+      "answer": "The cancellation window can be set anywhere from **1 to 72 hours**\u30101\u3011.",
+      "top_score": 1.812433123588562,
+      "sufficient": true,
+      "cited": false,
+      "latency": 43.49596571922302
+    },
+    {
+      "id": "q18",
+      "question": "Which POS systems can I connect?",
+      "answerable": true,
+      "ok": true,
+      "answer": "You can connect TableFlow to the following POS systems: Square, Toast, and Clover. [1]",
+      "top_score": 0.6239806413650513,
+      "sufficient": true,
+      "cited": true,
+      "latency": 42.82877850532532
+    },
+    {
+      "id": "q19",
+      "question": "How often does Toast sync?",
+      "answerable": true,
+      "ok": true,
+      "answer": "Toast syncs by polling every 15 minutes. [1]",
+      "top_score": 0.2209356427192688,
+      "sufficient": true,
+      "cited": true,
+      "latency": 47.02780604362488
+    },
+    {
+      "id": "q20",
+      "question": "What's the API rate limit?",
+      "answerable": true,
+      "ok": true,
+      "answer": "The API is limited to **100 requests per minute per location**. [3]",
+      "top_score": -6.228496074676514,
+      "sufficient": true,
+      "cited": true,
+      "latency": 45.83111119270325
+    },
+    {
+      "id": "q21",
+      "question": "How do I authenticate API requests?",
+      "answerable": true,
+      "ok": true,
+      "answer": "To authenticate API requests, include your API key in the request header as `X-TableFlow-Key`. You can rotate your key from Settings\u202f>\u202fAPI. [1]",
+      "top_score": 4.100188732147217,
+      "sufficient": true,
+      "cited": true,
+      "latency": 60.911577463150024
+    },
+    {
+      "id": "q22",
+      "question": "How long until Google approves Reserve with Google?",
+      "answerable": true,
+      "ok": true,
+      "answer": "Google approval for Reserve with Google typically takes **5 to 10 business days** after you submit the request. [1]",
+      "top_score": 3.5536234378814697,
+      "sufficient": true,
+      "cited": true,
+      "latency": 52.809391260147095
+    },
+    {
+      "id": "q23",
+      "question": "Which plan gives me API access?",
+      "answerable": true,
+      "ok": true,
+      "answer": "API access is available on the **Pro** plan only. [1] [2]",
+      "top_score": 2.7327165603637695,
+      "sufficient": true,
+      "cited": true,
+      "latency": 48.65997004508972
+    },
+    {
+      "id": "q24",
+      "question": "How many times are failed webhooks retried?",
+      "answerable": true,
+      "ok": true,
+      "answer": "Failed webhook deliveries are retried up to **5 times** with exponential backoff. [1]",
+      "top_score": 4.312105655670166,
+      "sufficient": true,
+      "cited": true,
+      "latency": 42.006025075912476
+    },
+    {
+      "id": "q25",
+      "question": "What can a Host do?",
+      "answerable": true,
+      "ok": true,
+      "answer": "A Host can manage reservations and the waitlist, view guest profiles, but cannot see reports. [1]",
+      "top_score": 0.1754545122385025,
+      "sufficient": true,
+      "cited": true,
+      "latency": 23.33798098564148
+    },
+    {
+      "id": "q26",
+      "question": "how long is the password reset link good for",
+      "answerable": true,
+      "ok": true,
+      "answer": "Password reset links are valid for 30\u202fminutes. [1]",
+      "top_score": 3.573456048965454,
+      "sufficient": true,
+      "cited": true,
+      "latency": 24.653397798538208
+    },
+    {
+      "id": "q27",
+      "question": "Can I use SMS codes for two-factor auth?",
+      "answerable": true,
+      "ok": true,
+      "answer": "No. Two\u2011factor authentication works only with authenticator apps; SMS codes are not supported\u30101\u3011.",
+      "top_score": 1.9391913414001465,
+      "sufficient": true,
+      "cited": false,
+      "latency": 25.234174966812134
+    },
+    {
+      "id": "q28",
+      "question": "How long are audit logs kept?",
+      "answerable": true,
+      "ok": true,
+      "answer": "Audit logs are kept for 12 months. [1]",
+      "top_score": 3.6877384185791016,
+      "sufficient": true,
+      "cited": true,
+      "latency": 23.207361936569214
+    },
+    {
+      "id": "q29",
+      "question": "How long is a staff invitation valid?",
+      "answerable": true,
+      "ok": true,
+      "answer": "Staff invitation links expire after 72\u202fhours. [1]",
+      "top_score": 5.0750203132629395,
+      "sufficient": true,
+      "cited": true,
+      "latency": 23.495113134384155
+    },
+    {
+      "id": "q30",
+      "question": "Can I host my data in Europe?",
+      "answerable": true,
+      "ok": true,
+      "answer": "Yes. TableFlow allows EU customers to choose the EU\u2011Frankfurt region for hosting their data. [1]",
+      "top_score": -3.6447248458862305,
+      "sufficient": true,
+      "cited": true,
+      "latency": 23.334677696228027
+    },
+    {
+      "id": "q31",
+      "question": "How long do you keep guest data after I cancel?",
+      "answerable": true,
+      "ok": true,
+      "answer": "Guest data is kept for 90 days after you cancel your account, after which it is permanently deleted. [1]",
+      "top_score": 6.252037048339844,
+      "sufficient": true,
+      "cited": true,
+      "latency": 22.108766078948975
+    },
+    {
+      "id": "q32",
+      "question": "What's the support response time on Growth?",
+      "answerable": true,
+      "ok": true,
+      "answer": "The Growth plan offers email and chat support from 9\u202fam to 6\u202fpm Eastern, Monday to Friday, with a response time of **within 8 hours**.\u30101\u3011",
+      "top_score": 5.090607166290283,
+      "sufficient": true,
+      "cited": false,
+      "latency": 23.603712558746338
+    },
+    {
+      "id": "q33",
+      "question": "Are you SOC 2 certified?",
+      "answerable": true,
+      "ok": true,
+      "answer": "Yes, TableFlow is SOC\u202f2 Type\u202fII certified. [1]",
+      "top_score": 5.909402370452881,
+      "sufficient": true,
+      "cited": true,
+      "latency": 20.137091636657715
+    },
+    {
+      "id": "q34",
+      "question": "How long do you keep backups?",
+      "answerable": true,
+      "ok": false,
+      "answer": "Backups are kept for 35 days. [1]",
+      "top_score": 1.382367730140686,
+      "sufficient": true,
+      "cited": true,
+      "latency": 20.371182441711426
+    },
+    {
+      "id": "q35",
+      "question": "What does the Enterprise plan cost?",
+      "answerable": false,
+      "ok": true,
+      "answer": "I couldn\u2019t find any information about an Enterprise plan in the documents you provided.",
+      "top_score": -1.234808325767517,
+      "sufficient": false,
+      "cited": false,
+      "latency": 40.93038630485535
+    },
+    {
+      "id": "q36",
+      "question": "Does TableFlow have an Android tablet kiosk mode?",
+      "answerable": false,
+      "ok": true,
+      "answer": "I couldn\u2019t find any mention of an Android tablet kiosk mode in the provided documents.",
+      "top_score": -5.250275611877441,
+      "sufficient": false,
+      "cited": false,
+      "latency": 39.38739490509033
+    },
+    {
+      "id": "q37",
+      "question": "Who founded TableFlow?",
+      "answerable": false,
+      "ok": false,
+      "answer": "I could not find that information in the provided documents.",
+      "top_score": -2.9670298099517822,
+      "sufficient": false,
+      "cited": false,
+      "latency": 26.362001180648804
+    },
+    {
+      "id": "q38",
+      "question": "Can I pay with Bitcoin?",
+      "answerable": false,
+      "ok": true,
+      "answer": "I couldn\u2019t find any mention of Bitcoin as a payment option in the provided documents.",
+      "top_score": -7.306003093719482,
+      "sufficient": false,
+      "cited": false,
+      "latency": 43.18710541725159
+    },
+    {
+      "id": "q39",
+      "question": "How do I export my menu as a PDF?",
+      "answerable": false,
+      "ok": true,
+      "answer": "I couldn\u2019t find that information in the documents.",
+      "top_score": -7.649054527282715,
+      "sufficient": false,
+      "cited": false,
+      "latency": 39.10018253326416
+    },
+    {
+      "id": "q40",
+      "question": "What is the capital of France?",
+      "answerable": false,
+      "ok": true,
+      "answer": "I could not find it in the documents.",
+      "top_score": -6.271180152893066,
+      "sufficient": false,
+      "cited": false,
+      "latency": 39.25015139579773
+    }
+  ]
+}
